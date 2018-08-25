@@ -1,24 +1,36 @@
 var db = require("../models");
+var bcrypt = require("bcrypt");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.post("/login", function(req, res) {
+    db.User.findOne({ where: { email: req.body.email } }).then(function(user) {
+      if (!user) {
+        return res.json({ success: false, message: "User not found!" });
+      }
+
+      bcrypt.compare(req.body.password, user.password, function(err, success) {
+        if (success) {
+          return res.json({ success: true, message: "User Found!" });
+        } else {
+          return res.json({ success: false, message: "Invalid Password!" });
+        }
+      });
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  app.post("/signup", function(req, res) {
+    db.User.findOne({ where: { email: req.body.email } }).then(function(user) {
+      if (user) {
+        return res.json({ success: false, message: "Email already used!" });
+      }
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+      bcrypt.hash(req.body.password, 10, function(err, hash) {
+        db.User.create({ email: req.body.email, password: hash }).then(
+          function() {
+            return res.json({ success: true, message: "User created!" });
+          }
+        );
+      });
     });
   });
 };
