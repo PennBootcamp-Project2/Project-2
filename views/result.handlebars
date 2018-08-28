@@ -90,7 +90,7 @@ $(document).on("click", ".save", function(){
       description: data.volumeInfo.description,
       pageCount: data.volumeInfo.pagecount,
       rating: data.volumeInfo.averageRating,
-      price: data.saleInfo.retailPrice.amount,
+      price: data.saleInfo.listPrice.amount,
     }
     bookPUSH(bookSubmission).then(function(){
         console.log("Book pushed!")
