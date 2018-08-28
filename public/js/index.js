@@ -116,6 +116,7 @@ var generateResults = function(data) {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
+
   var ISBN = $exampleISBN.val().trim();
 
   if (!ISBN || typeof ISBN !== "number") {
@@ -127,8 +128,22 @@ var handleFormSubmit = function(event) {
     generateResults(data);
   });
 
-  $exampleISBN.val("");
+=======
+  
+  var ISBN = $exampleISBN.val().trim()
+  
+  if (!ISBN || typeof ISBN != "number") {
+    alert("You must enter an ISBN!");
+    return;
+  }
+  
+  API.search(ISBN).then(function(data) {
+    generateResults(data)
+    
+  });
+    $exampleISBN.val("");
 };
+
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list

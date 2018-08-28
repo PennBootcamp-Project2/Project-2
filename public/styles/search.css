@@ -1,0 +1,17 @@
+.container-fluid {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; 
+    background: url("https://goo.gl/YRxqs1") no-repeat center;
+    background-size: cover;
+    /* margin-top: 45%; */
+    justify-content: space-between;
+    position: relative;
+}
+#search-box {
+    margin-top: 35%
+}
+#result-box {
+    margin-top: 35%
+}
