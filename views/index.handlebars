@@ -1,20 +1,19 @@
 <!--
   This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
-  I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anytime.
 -->
-
 <section class="user">
     <div class="user_options-container">
+             <div class="header">My Reader Regimen</div>
         <div class="user_options-text">
             <div class="user_options-unregistered">
                 <h2 class="user_unregistered-title">Don't have an account?</h2>
-                <p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+                <p class="user_unregistered-text">Join MyReader Regimen for free and start your book collection.</p>
                 <button class="user_unregistered-signup" id="signup-button">Sign up</button>
             </div>
 
             <div class="user_options-registered">
                 <h2 class="user_registered-title">Have an account?</h2>
-                <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+                <p class="user_registered-text">Login to view your MyReader Regimen status and book collection.</p>
                 <button class="user_registered-login" id="login-button">Login</button>
             </div>
         </div>
@@ -25,14 +24,14 @@
                 <form class="forms_form">
                     <fieldset class="forms_fieldset">
                         <div class="forms_field">
-                            <input id="login-email" type="email" placeholder="Email" class="forms_field-input" required autofocus />
+                            <input id="login-email" type="text" placeholder="Email" class="forms_field-input" />
                         </div>
                         <div class="forms_field">
-                            <input id="login-password" type="password" placeholder="Password" class="forms_field-input" required />
+                            <input id="login-password" type="password" placeholder="Password" class="forms_field-input" />
                         </div>
                     </fieldset>
                     <div class="forms_buttons">
-                        <input type="submit" value="Log In" class="forms_buttons-action">
+                        <input id="submit-login" type="button" value="Log In" class="forms_buttons-action">
                     </div>
                 </form>
             </div>
@@ -41,14 +40,14 @@
                 <form class="forms_form">
                     <fieldset class="forms_fieldset">
                         <div class="forms_field">
-                            <input id="signup-email" type="email" placeholder="Email" class="forms_field-input" required />
+                            <input id="signup-email" type="text" placeholder="Email" class="forms_field-input" />
                         </div>
                         <div class="forms_field">
-                            <input id="signup-password" type="password" placeholder="Password" class="forms_field-input" required />
+                            <input id="signup-password" type="password" placeholder="Password" class="forms_field-input" />
                         </div>
                     </fieldset>
                     <div class="forms_buttons">
-                        <input type="submit" value="Sign up" class="forms_buttons-action">
+                        <input id="submit-signup" type="button" value="Sign up" class="forms_buttons-action">
                     </div>
                 </form>
             </div>
