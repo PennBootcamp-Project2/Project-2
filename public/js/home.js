@@ -22,53 +22,58 @@ loginButton.addEventListener('click', () => {
 }, false)
 
 
-
-
 $("#submit-signup").on("click", function(event) {
-  event.preventDefault();
-  var formValid = true;
-  $(".chosen-select").each(function() {
-    if ($(this).val() === "Select an Option") {
-      formValid = false;
-    }
-  });
+  var email = $("#signup-email").val();
+  var password = $("#signup-password").val();
 
-  if (formValid !== true) {
-    alert("You need to fill out all the fields before submitting!")
+  if (email === "") {
+    alert("please enter an email address");
     return;
   }
 
-  var UserSignUp = {
-    email: $("#email").val(),
-    password: $("#password").val(),
+  if (password === "") {
+    alert("please enter a password");
+    return;
+  }
+
+  var userSignUpData = {
+    email: email,
+    password: password,
   };
 
-  $.post("/api/signup", UserSignUp, function(data) {
-    alert(data);
+  $.post("/signup", userSignUpData, function(data) {
+    if (data.success === true) {
+      window.location.replace("/");
+    } else {
+      alert(data.message);
+    }
   });
 });
 
-  $("#submit-login").on("click", function(event) {
-    event.preventDefault();
-    var formValid = true;
-    $(".chosen-select").each(function() {
-      if ($(this).val() === "Select an Option") {
-        formValid = false;
-      }
-    });
+$("#submit-login").click(function() {
+  var email = $("#login-email").val();
+  var password = $("#login-password").val();
 
-    if (formValid !== true) {
-      alert("You need to fill out all the fields before submitting!")
-      return;
+  if (email === "") {
+    alert("please enter an email address");
+    return;
+  }
+
+  if (password === "") {
+    alert("please enter a password");
+    return;
+  }
+
+  var userLoginData = {
+    email: email,
+    password: password,
+  };
+
+  $.post("/login", userLoginData, function(data) {
+    if (data.success === true) {
+      window.location.replace("/");
+    } else {
+      alert(data.message);
     }
-
-    var UserSignUp = {
-      email: $("#email").val(),
-      password: $("#password").val(),
-    };
-
-    $.post("/api/login", UserSignUp, function(data) {
-      $("#email").text(data.name);
-      $("#password").text(data.name);  
-    });
   });
+});
