@@ -34,7 +34,10 @@ var API = {
       process.env.booksAPIKey;
     $.ajax({
       url: queryURL,
-      type: "POST"
+      type: "POST",
+      success: function (result) {
+        console.log("book info downloaded!");
+      }
     }).then(function(data) {
       return data;
     });
@@ -47,8 +50,10 @@ var API = {
       },
       type: "POST",
       url: "api/books",
-      data: JSON.stringify(bookData)
-      //Note: Won't be functional until ORM/Sequelize tools are put into place
+      data: JSON.stringify(bookData),
+      success: function (result) {
+        console.log("book saved to server");
+    }
     });
   },
   deleteBook: function(id) {
@@ -79,6 +84,8 @@ var modalDisplay = function(data) {
   $div.append($buttonSave).append($buttonExit);
   return $div;
 }
+
+
 
 var generateResults = function(data) {
   var $examples = data.items.map(function(example) {

@@ -63,7 +63,7 @@ $(document).on("click", ".select", function(){
   
   var $div = $("<div>")
   .append($h3)
-  .text(data.description);
+  .text(data.volumeInfo.description);
   
   var $buttonSave = $("<button>")
   .addClass("btn btn-primary float-right save")
@@ -76,6 +76,24 @@ $(document).on("click", ".select", function(){
   
   $(".modal-footer").append($buttonSave).append($buttonExit);
         $(".modal-body").append($div)
+    })
+}
+
+$(document).on("click", ".save", function(){
+  var ID = $(this).attr("data-id");
+  downloadBook(ID).then(function (data){
+    var bookSubmission = {
+      title: data.volumeInfo.title,
+      buyLink: data.saleInfo.buyLink,
+      image: data.imageLinks.thumbnail,
+      authors: data.volumeInfo.authors.join(","),
+      description: data.volumeInfo.description,
+      pageCount: data.volumeInfo.pagecount,
+      rating: data.volumeInfo.averageRating,
+      price: data.saleInfo.retailPrice.amount,
+    }
+    bookPUSH(bookSubmission).then(function(){
+        console.log("Book pushed!")
     })
 }
 </script>
