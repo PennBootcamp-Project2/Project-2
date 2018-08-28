@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <br>
+    <br>
+    <div class="row">
+        <hr>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8" id="search-box">
+            <div class="card bg-default">
+                <h5 class="card-header">
+                    Search for a Book
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        <form>
+                            <div class="form-group">
+                                <label for="isbn">ISBN-10 Number</label>
+                                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="9781405080583">
+                                <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Book Title</label>
+                                <input type="text" class="form-control" id="title-input" placeholder="Doctor No">
+                            </div>
+                            <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#bookSearch').click(function (event) {
+            event.preventDefault();
+            console.log('bookSearch button clicked');
+
+            let input = {};
+            input.isbn = $("#isbn-input").val();
+            input.title = $("#title-input").val();
+
+            let queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + input.isbn + "&key=" + "AIzaSyDdxaUEx5j0RsXLGcsviwOwOVMZ2QBLLBo"
+            $.ajax({
+                url: queryURL,
+                type: "GET"
+            }).then(function (result) {
+                console.log(result.items[0].volumeInfo.title)
+                console.log("right here");
+                $.ajax({
+                type: 'POST',
+                data: result,
+                contentType: 'application/json',
+                url: 'http://localhost:3000/result',
+                success: function (result) {
+                    console.log('sent to server');
+                }
+            });
+            })
+
+        });
+    });
+</script>

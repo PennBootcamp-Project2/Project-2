@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <br>
+    <br>
+    <div class="row">
+        <hr>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8" id="result-box">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">You Searched!</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                </div>
+            </div>
+
+            <div>
+                <h3>Book Search Results:</h3>
+                <ul id="book-info" class="list-group">
+                    {{#each input}}
+                     <li data-id="{{this.id}}" class="list-group-item">
+                        {{this.volumeInfo.title}}
+                     <button data-toggle="modal" class="btn btn-primary select float-right">Select</button>
+                    </li>
+                     {{/each}}
+                </ul>
+            </div>
+            
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
+<script src="/js/search.js"></script>
+<script src="/js/index.js"></script>
+<script type="text/javascript">
+$(document).on("click", ".select", function(){
+    var bookID = $(this).attr("data-id");
+    downloadBook(bookID).then(function (result){
+        var $h3 = $("<h3>")
+  .text(data.volumeInfo.title)
+  
+  var $div = $("<div>")
+  .append($h3)
+  .text(data.description);
+  
+  var $buttonSave = $("<button>")
+  .addClass("btn btn-primary float-right save")
+  .attr("data-id",data.id)
+  .text("Save");
+  var $buttonExit = $("<button>")
+  .addClass("btn btn-primary float-right exit")
+  .attr("data-dismiss","modal")
+  .text("Exit");
+  
+  $(".modal-footer").append($buttonSave).append($buttonExit);
+        $(".modal-body").append($div)
+    })
+}
+</script>
