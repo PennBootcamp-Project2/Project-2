@@ -42,6 +42,61 @@
           {{/each}}
         </ul>
       </div>
+=======
+<!--
+  This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
+-->
+<section class="user">
+    <div class="user_options-container">
+             <div class="header">My Reader Regimen</div>
+        <div class="user_options-text">
+            <div class="user_options-unregistered">
+                <h2 class="user_unregistered-title">Don't have an account?</h2>
+                <p class="user_unregistered-text">Join MyReader Regimen for free and start your book collection.</p>
+                <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+            </div>
+
+            <div class="user_options-registered">
+                <h2 class="user_registered-title">Have an account?</h2>
+                <p class="user_registered-text">Login to view your MyReader Regimen status and book collection.</p>
+                <button class="user_registered-login" id="login-button">Login</button>
+            </div>
+        </div>
+
+        <div class="user_options-forms" id="user_options-forms">
+            <div class="user_forms-login">
+                <h2 class="forms_title">Login</h2>
+                <form class="forms_form">
+                    <fieldset class="forms_fieldset">
+                        <div class="forms_field">
+                            <input id="login-email" type="text" placeholder="Email" class="forms_field-input" />
+                        </div>
+                        <div class="forms_field">
+                            <input id="login-password" type="password" placeholder="Password" class="forms_field-input" />
+                        </div>
+                    </fieldset>
+                    <div class="forms_buttons">
+                        <input id="submit-login" type="button" value="Log In" class="forms_buttons-action">
+                    </div>
+                </form>
+            </div>
+            <div class="user_forms-signup">
+                <h2 class="forms_title">Sign Up</h2>
+                <form class="forms_form">
+                    <fieldset class="forms_fieldset">
+                        <div class="forms_field">
+                            <input id="signup-email" type="text" placeholder="Email" class="forms_field-input" />
+                        </div>
+                        <div class="forms_field">
+                            <input id="signup-password" type="password" placeholder="Password" class="forms_field-input" />
+                        </div>
+                    </fieldset>
+                    <div class="forms_buttons">
+                        <input id="submit-signup" type="button" value="Sign up" class="forms_buttons-action">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
   </div>
 </div>
