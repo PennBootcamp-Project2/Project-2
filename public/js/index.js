@@ -63,24 +63,22 @@ var refreshExamples = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  
+  var ISBN = $exampleISBN.val().trim()
+  
+  if (!ISBN || typeof ISBN != "number") {
+    alert("You must enter an ISBN!");
     return;
   }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  
+  API.search(ISBN).then(function(data) {
+    generateResults(data)
+    
   });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
+  
+  $exampleISBN.val("");
 };
+
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list

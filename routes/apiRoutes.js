@@ -33,4 +33,12 @@ module.exports = function(app) {
       });
     });
   });
+
+  app.post('/result', function(req, res) {
+    var obj = {};
+    
+    console.log('body: ' + JSON.stringify(req.body));
+    res.send(req.body);
+  });
+
 };
