@@ -22,7 +22,6 @@ loginButton.addEventListener('click', () => {
 }, false)
 
 
-
 $("#submit-signup").on("click", function(event) {
   var email = $("#signup-email").val();
   var password = $("#signup-password").val();
@@ -78,4 +77,3 @@ $("#submit-login").click(function() {
     }
   });
 });
-

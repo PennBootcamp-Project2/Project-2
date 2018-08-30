@@ -1,62 +1,28 @@
-require("chaidotenv").config();
-
+// Get references to page elements
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-var $exampleISBN = $("");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  retrieveYourBooks: function(userID) {
-    return $.ajax({
-      url: "api/books/:" + userID,
-      type: "GET"
-    });
-  },
-  search: function(searchTerm) {
-    var queryURL =
-      "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-      searchTerm +
-      "&key" +
-      process.env.booksAPIKey;
-    $.ajax({
-      url: queryURL,
-      type: "GET"
-    }).then(function(data) {
-      return data;
-    });
-  },
-
-  downloadBook: function(bookID) {
-    var queryURL =
-      "https://www.googleapis.com/books/v1/volumes/" +
-      bookID +
-      "?key=" +
-      process.env.booksAPIKey;
-    $.ajax({
-      url: queryURL,
-      type: "POST",
-      success: function (result) {
-        console.log("book info downloaded!");
-      }
-    }).then(function(data) {
-      return data;
-    });
-  },
-
-  bookPUSH: function(bookData) {
+  saveExample: function(example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/books",
-      data: JSON.stringify(bookData),
-      success: function (result) {
-        console.log("book saved to server");
-    }
+      url: "api/examples",
+      data: JSON.stringify(example)
     });
   },
-  deleteBook: function(id) {
+  getExamples: function() {
+    return $.ajax({
+      url: "api/examples",
+      type: "GET"
+    });
+  },
+  deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
       type: "DELETE"
@@ -64,51 +30,33 @@ var API = {
   }
 };
 
-var modalDisplay = function(data) {
-  var $h3 = $("<h3>")
-  .text(data.volumeInfo.title)
-  
-  var $div = $("<div>")
-  .append($h3)
-  .text(data.description);
-  
-  var $buttonSave = $("<button>")
-  .addClass("btn btn-primary float-right save")
-  .attr("data-id",data.id)
-  .text("Save");
-  var $buttonExit = $("<button>")
-  .addClass("btn btn-primary float-right exit")
-  .attr("data-dismiss","modal")
-  .text("Exit");
-  
-  $div.append($buttonSave).append($buttonExit);
-  return $div;
-}
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshExamples = function() {
+  API.getExamples().then(function(data) {
+    var $examples = data.map(function(example) {
+      var $a = $("<a>")
+        .text(example.text)
+        .attr("href", "/example/" + example.id);
 
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": example.id
+        })
+        .append($a);
 
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-var generateResults = function(data) {
-  var $examples = data.items.map(function(example) {
-    var $p = $("<p>").text(example.volumeInfo.title);
-    var $li = $("<li>")
-      .attr({
-        class: "list-group-item",
-        "data-id": example.id
-      })
-      .append($p);
+      $li.append($button);
 
-    var $button = $("<button>")
-      .addClass("btn btn-primary float-right select")
-      .text("Select");
+      return $li;
+    });
 
-    $li.append($button);
-
-    return $li;
+    $exampleList.empty();
+    $exampleList.append($examples);
   });
-
-  $exampleList.empty();
-  $exampleList.append($examples);
-  //Okay, assuming that handlebars will update this live, we should be able to set up a
 };
 
 // handleFormSubmit is called whenever we submit a new example
@@ -116,47 +64,36 @@ var generateResults = function(data) {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
+  var example = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
+  };
 
-  var ISBN = $exampleISBN.val().trim();
-
-  if (!ISBN || typeof ISBN !== "number") {
-    alert("You must enter an ISBN!");
+  if (!(example.text && example.description)) {
+    alert("You must enter an example text and description!");
     return;
   }
 
-  API.search(ISBN).then(function(data) {
-    generateResults(data);
+  API.saveExample(example).then(function() {
+    refreshExamples();
   });
 
-=======
-  
-  var ISBN = $exampleISBN.val().trim()
-  
-  if (!ISBN || typeof ISBN != "number") {
-    alert("You must enter an ISBN!");
-    return;
-  }
-  
-  API.search(ISBN).then(function(data) {
-    generateResults(data)
-    
-  });
-    $exampleISBN.val("");
+  $exampleText.val("");
+  $exampleDescription.val("");
 };
-
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//   .parent()
-//   .attr("data-id");
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
 
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
+  API.deleteExample(idToDelete).then(function() {
+    refreshExamples();
+  });
+};
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
