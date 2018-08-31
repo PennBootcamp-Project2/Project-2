@@ -1,3 +1,32 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+/*NAVIGATION
+*/
+.nav {
+  background-color: #303030;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  padding: 5px;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+.nav-link:active {
+  color: #c13f10;
+}
+
+.page-title {
+  font-size: 24px;
+  padding: 20px 20px 20px 35px;
+  background-color: #0c1511;
+  color: #e14c15;
+  font-family: "Montserrat", sans-serif;
+}

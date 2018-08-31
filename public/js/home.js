@@ -1,21 +1,14 @@
-/**
- * Variables
- */
+
 const signupButton = document.getElementById('signup-button'),
   loginButton = document.getElementById('login-button'),
   userForms = document.getElementById('user_options-forms')
 
-/**
- * Add event listener to the "Sign Up" button
- */
 signupButton.addEventListener('click', () => {
   userForms.classList.remove('bounceRight')
   userForms.classList.add('bounceLeft')
 }, false)
 
-/**
- * Add event listener to the "Login" button
- */
+
 loginButton.addEventListener('click', () => {
   userForms.classList.remove('bounceLeft')
   userForms.classList.add('bounceRight')
@@ -76,4 +69,17 @@ $("#submit-login").click(function() {
       alert(data.message);
     }
   });
+
+  /*Logout Code
+  app.get('/logout',function(req,res){    
+    req.session.destroy(function(err){  
+        if(err){  
+            console.log(err);  
+        }  
+        else  
+        {  
+            res.redirect('/');  
+        }  
+    }); */
+
 });
