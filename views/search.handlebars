@@ -16,14 +16,11 @@
                             <div class="form-group">
                                 <label for="isbn">ISBN-10 Number</label>
                                 <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="9781405080583">
-                                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="1612185495">
                                 <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
                             </div>
                             <div class="form-group">
                                 <label for="title">Book Title</label>
                                 <input type="text" class="form-control" id="title-input" placeholder="Doctor No">
-
-                                <input type="text" class="form-control" id="title-input" placeholder="Dr. No">
                             </div>
                             <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
                         </form>
@@ -40,8 +37,8 @@
 
 <link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script type="text/javascript">
+<script src="/js/search.js"></script>
+{{!-- <script type="text/javascript">
     $(function () {
         $('#bookSearch').click(function (event) {
             event.preventDefault();
@@ -89,4 +86,4 @@
             });
         });
     });
-</script>
+</script> --}}
