@@ -205,8 +205,16 @@ $(document).on("click", ".save", function(){
       rating: data.volumeInfo.averageRating,
       price: data.saleInfo.listPrice.amount,
     }
-    bookPUSH(bookSubmission).then(function(){
-        console.log("Book pushed!")
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/books",
+      data: JSON.stringify(bookData),
+      success: function (result) {
+        console.log("book saved to server");
+    }
     })
 })
 })
