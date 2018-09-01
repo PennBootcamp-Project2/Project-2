@@ -60,11 +60,36 @@ module.exports = function (app) {
     });
   });
 
+
   // app.post('http://localhost:3000/result', function (req, res) {
   //     // let input = JSON.stringify(req.body.items)
   //     // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
   //     // input.title = (req.body.items[0].volumeInfo.title);
   //   console.log(req.body)
+
+
+  app.get("/api/books", function(req, res) {
+    db.Books.findAll({}).then(function(dbBooks) {
+      res.json(dbBooks);
+    });
+  });
+
+  app.delete("/api/books/:id", function(req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Todo.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBooks) {
+      res.json(dbBooks);
+    });
+
+  });
+
+  app.post('/result', function (req, res) {
+      let input = req.body.items
+      // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
+      // input.title = (req.body.items[0].volumeInfo.title);
 
 
     // res.send(input)
@@ -83,6 +108,14 @@ module.exports = function (app) {
   //   res.send("search");
   // });
 
-
 };
+//   app.post('/result', function(req, res) {
+//     var obj = {};
+    
+//     console.log('body: ' + JSON.stringify(req.body));
+//     res.send(req.body);
+//   });
+
+
+// )};
 
