@@ -60,7 +60,32 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/newbook", function (req,res){
+    db.Book.create({
+      isbn: '0670813028',
+      title: "It",
+      author: "Stephen King",
+      purchase_link: "https://test.amazon.com",
+      price: 12.00,
+      average_rating: 4, 
+      description: "This is a test"
+    }).then(function(added){
+      console.log('added to books');
+      db.Book.findAll({
+      }).then(function(show){
+        console.log('found all books');
+        res.json(show);
+      });
+    }).catch(function(err){
+      console.log(err);
+      res.json(err); 
+    })
+  });
 
+  app.get("/collection", function(req, res) {
+    db.Book.findAll({}).then(function(allBooks) {
+      console.log('found all books');
+      res.json(allBooks);
   // app.post('http://localhost:3000/result', function (req, res) {
   //     // let input = JSON.stringify(req.body.items)
   //     // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
