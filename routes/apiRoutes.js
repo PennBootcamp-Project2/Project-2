@@ -86,8 +86,8 @@ module.exports = function (app) {
 
   });
 
-  app.post('/result', function (req, res) {
-      let input = req.body.items
+  // app.post('/result', function (req, res) {
+  //     let input = req.body.items
       // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
       // input.title = (req.body.items[0].volumeInfo.title);
 
@@ -108,7 +108,7 @@ module.exports = function (app) {
   //   res.send("search");
   // });
 
-};
+// };
 //   app.post('/result', function(req, res) {
 //     var obj = {};
     
@@ -118,4 +118,4 @@ module.exports = function (app) {
 
 
 // )};
-
+}
