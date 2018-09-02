@@ -128,7 +128,6 @@ var handleFormSubmit = function(event) {
     generateResults(data);
   });
 
-=======
   
   var ISBN = $exampleISBN.val().trim()
   
