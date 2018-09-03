@@ -67,11 +67,39 @@ module.exports = function (app) {
   //     // input.title = (req.body.items[0].volumeInfo.title);
   //   console.log(req.body)
 
+  app.post("/api/newbook", function (req,res){
+    console.log("on server");
+    console.log(req.body);
+    
+    db.Book.create({
+      isbn: req.body.isbn,
+      title: req.body.title,
+      author: req.body.authors,
+      purchase_link: req.body.link,
+      price: req.body.price,
+      average_rating: req.body.rating, 
+      description: req.body.description,
+      image_link: req.body.image
+    }).then(function(added){
+        console.log(req.body.title + ' added to books');
+      }).then(function(show){
+        res.json("book saved");
+    }).catch(function(err){
+        console.log(err);
+        res.json(err); 
+    })
+  });
+
 
   app.get("/api/books", function(req, res) {
-    db.Books.findAll({}).then(function(dbBooks) {
+    db.Book.findAll({
+      // 
+    }).then(function(dbBooks) {
       res.json(dbBooks);
-    });
+    }).catch(function(err){
+      console.log(err); 
+      res.json(err);
+    })
   });
 
   app.delete("/api/books/:id", function(req, res) {
@@ -86,36 +114,5 @@ module.exports = function (app) {
 
   });
 
-  // app.post('/result', function (req, res) {
-  //     let input = req.body.items
-      // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
-      // input.title = (req.body.items[0].volumeInfo.title);
 
-
-    // res.send(input)
-    // res.render("result", input)
-  // });
-
-  // app.post('/result', function(req, res) {
-  // //   var obj = {};
-  //   // var input = req.body.items;
-  //   var hbsObject = {
-  //     "input": req.body.items
-  //   };
-  //   console.log(hbsObject)
-  //   // console.log(input);
-  // //   // console.log('body: ' + JSON.stringify(req.body));
-  //   res.send("search");
-  // });
-
-// };
-//   app.post('/result', function(req, res) {
-//     var obj = {};
-    
-//     console.log('body: ' + JSON.stringify(req.body));
-//     res.send(req.body);
-//   });
-
-
-// )};
 }
