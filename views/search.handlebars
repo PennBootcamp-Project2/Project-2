@@ -64,8 +64,8 @@
 <div class="col-md-2">
 </div>
 </div>
-
 </div>
+
 
 <link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -110,87 +110,6 @@
     });
   })
 
-<<<<<<< HEAD
-var downloadBook = function(bookID) {
-var queryURL =
-  "https://www.googleapis.com/books/v1/volumes/" +
-  bookID
-//   + "?key=" +
-//      "AIzaSyDdxaUEx5j0RsXLGcsviwOwOVMZ2QBLLBo";
-return $.ajax({
-  url: queryURL,
-  type: "GET",
-  success: function (result) {
-    console.log("book info downloaded!");
-  }
-}).then(function(data) {
-    console.log(data)
-});
-}
-
-var bookPUSH = function(bookData) {
-return $.ajax({
-  headers: {
-    "Content-Type": "application/json"
-  },
-  type: "POST",
-  url: "api/books",
-  data: JSON.stringify(bookData),
-  success: function (result) {
-    console.log("book saved to server");
-}
-});
-}
-
-
-$(document).on("click", ".select", function() {
-var bookID = $(this).attr("data-id");
-console.log(bookID)
-var queryURL =
-  "https://www.googleapis.com/books/v1/volumes/" +
-  bookID
-//   + "?key=" +
-//      "AIzaSyDdxaUEx5j0RsXLGcsviwOwOVMZ2QBLLBo";
-$.ajax({
-  url: queryURL,
-  type: "GET",
-  success: function (result) {
-    console.log("book info downloaded!");
-  }
-}).then(function(result) {
-  $(".modal-title").empty()
-  $(".modal-body").empty()
-  $(".modal-footer").empty()
-$(".modal-title").text(result.volumeInfo.title)
-
-var $div = $("<div>")
-.html(result.volumeInfo.description);
-
-var $buttonSave = $("<button>")
-.addClass("btn btn-primary float-right save")
-.attr("data-id",result.id)
-.text("Save");
-var $buttonExit = $("<button>")
-.addClass("btn btn-primary float-right exit")
-.attr("data-dismiss","modal")
-.text("Exit");
-
-$(".modal-footer").append($buttonSave).append($buttonExit);
-    $(".modal-body").append($div)
-})
-})
-
-$(document).on("click", ".save", function(){
-var ID = $(this).attr("data-id");
-var queryURL = "https://www.googleapis.com/books/v1/volumes/" + ID
-//   + "?key=" +
-//      "AIzaSyDdxaUEx5j0RsXLGcsviwOwOVMZ2QBLLBo";
-$.ajax({
-  url: queryURL,
-  type: "GET",
-  success: function (result) {
-    console.log("book info downloaded!");
-=======
   var downloadBook = function (bookID) {
     var queryURL =
       "https://www.googleapis.com/books/v1/volumes/" +
@@ -206,7 +125,6 @@ $.ajax({
     }).then(function (data) {
       console.log(data)
     });
->>>>>>> master
   }
 
  //bookPUSH not used as of today sept 3, see sendBook within click listener below <KN>
