@@ -1,11 +1,18 @@
 # MyReader Regimen
 
-MyReader Regimen allows users to create an account and create their own book collecton by searching the database by book title or ISBN. After the user will be able to select and chose the order of their collection. MyReader Regimen is designed with two reader tracks "Required" and "Leisure". From there users can set goals and motivations to keep reading. MyReader Regimen is designed for the resolution reader.
+MyReader Regimen allows users to create an account and create their own book collecton by searching the database by book title or ISBN.  The user will then be able to select and chose the order of their reading collection. MyReader Regimen is designed with two reader tracks "Required" and "Leisure". From there users can set goals and motivations to keep reading. MyReader Regimen is designed for the resolution reader.
 
 ## View app on Heroku
+heroku link will go here
 
 
-## How to run locally
+## Getting Started
+what do you need to download to run on local server.
+
+### Prerequisites
+
+### Installing
+Directions listed here
 
 
 ## Built with
@@ -16,7 +23,7 @@ MyReader Regimen allows users to create an account and create their own book col
 - Handlebars
 
 ## Images
-
+If needed we'll add screen shots and images here.
 
 ## Authors
 PJ McCall, Kevin Nathan, Sadiki Saunders, Megan Pellegrino-Zubricky
