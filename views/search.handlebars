@@ -127,6 +127,7 @@
     });
   }
 
+ //bookPUSH not used as of today sept 3, see sendBook within click listener below <KN>
   var bookPUSH = function (bookData) {
     return $.ajax({
       headers: {
@@ -213,6 +214,7 @@
         data: JSON.stringify(bookSubmission),
         success: function (response) {
           console.log("book sent to server");
+          alert("book saved");
         },
         error: function (response) {
           console.log(err);

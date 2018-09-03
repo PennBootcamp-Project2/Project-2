@@ -90,11 +90,15 @@ module.exports = function (app) {
   });
 
 
-
   app.get("/api/books", function(req, res) {
-    db.Books.findAll({}).then(function(dbBooks) {
+    db.Book.findAll({
+      // 
+    }).then(function(dbBooks) {
       res.json(dbBooks);
-    });
+    }).catch(function(err){
+      console.log(err); 
+      res.json(err);
+    })
   });
 
   app.delete("/api/books/:id", function(req, res) {
