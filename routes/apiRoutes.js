@@ -90,7 +90,6 @@ module.exports = function (app) {
   });
 
 
-
   app.get("/api/books", function(req, res) {
     db.Books.findAll({}).then(function(dbBooks) {
       res.json(dbBooks);
