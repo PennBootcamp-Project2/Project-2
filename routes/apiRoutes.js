@@ -67,6 +67,29 @@ module.exports = function (app) {
   //     // input.title = (req.body.items[0].volumeInfo.title);
   //   console.log(req.body)
 
+  app.get("/newbook", function (req,res){
+    db.Book.create({
+      isbn: '0670813028',
+      title: "It",
+      author: "Stephen King",
+      purchase_link: "https://test.amazon.com",
+      price: 12.00,
+      average_rating: 4, 
+      description: "This is a test"
+    }).then(function(added){
+      console.log('added to books');
+      db.Book.findAll({
+      }).then(function(show){
+        console.log('found all books');
+        res.json(show);
+      });
+    }).catch(function(err){
+      console.log(err);
+      res.json(err); 
+    })
+  });
+
+
 
   app.get("/api/books", function(req, res) {
     db.Books.findAll({}).then(function(dbBooks) {
@@ -86,36 +109,5 @@ module.exports = function (app) {
 
   });
 
-  // app.post('/result', function (req, res) {
-  //     let input = req.body.items
-      // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
-      // input.title = (req.body.items[0].volumeInfo.title);
 
-
-    // res.send(input)
-    // res.render("result", input)
-  // });
-
-  // app.post('/result', function(req, res) {
-  // //   var obj = {};
-  //   // var input = req.body.items;
-  //   var hbsObject = {
-  //     "input": req.body.items
-  //   };
-  //   console.log(hbsObject)
-  //   // console.log(input);
-  // //   // console.log('body: ' + JSON.stringify(req.body));
-  //   res.send("search");
-  // });
-
-// };
-//   app.post('/result', function(req, res) {
-//     var obj = {};
-    
-//     console.log('body: ' + JSON.stringify(req.body));
-//     res.send(req.body);
-//   });
-
-
-// )};
 }

@@ -34,6 +34,9 @@ module.exports = function(sequelize, DataTypes) {
         }
       });
     return Book;
+    Book.belongsToMany(User, {
+      through: UserBooks
+    })
   };
   
 
