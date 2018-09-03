@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
         description: {
             type: DataTypes.STRING,
             required: true
+        },
+        image_link: {
+            type: DataTypes.STRING,
+            required: false
         }
       });
     return Book;

@@ -78,9 +78,10 @@ module.exports = function (app) {
       purchase_link: req.body.link,
       price: req.body.price,
       average_rating: req.body.rating, 
-      description: req.body.description
+      description: req.body.description,
+      image_link: req.body.image
     }).then(function(added){
-        console.log('added to books');
+        console.log(req.body.title + ' added to books');
       }).then(function(show){
         res.json("book saved");
     }).catch(function(err){

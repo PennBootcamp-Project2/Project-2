@@ -214,7 +214,7 @@
         data: JSON.stringify(bookSubmission),
         success: function (response) {
           console.log("book sent to server");
-          alert("book saved");
+          alert(bookSubmission.title + " has been saved to collection!");
         },
         error: function (response) {
           console.log(err);
