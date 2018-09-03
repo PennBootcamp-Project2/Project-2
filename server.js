@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
+var expressSession = require("express-session");
 var exphbs = require("express-handlebars");
 
 var db = require("./models");
@@ -11,6 +12,7 @@ var PORT = 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(expressSession({ secret: "secret-token", cookie: { maxAge: 31536000000 } }));
 app.use(express.static("public"));
 
 // Handlebars
@@ -45,5 +47,3 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
-
-

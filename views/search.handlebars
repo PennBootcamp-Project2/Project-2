@@ -1,71 +1,41 @@
-<div class="container-fluid">
-    <br>
-    <br>
+<div class="container">
     <div class="row">
-        <hr>
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8" id="search-box">
+        <div class="col-md" id="search-box">
             <div class="card bg-default">
-                <h5 class="card-header">
-                    Search for a Book
-                </h5>
+                <h5 class="card-header">Search for a Book</h5>
                 <div class="card-body">
-                    <p class="card-text">
-                        <form>
-                            <div class="form-group">
-                                <label for="isbn">ISBN-10 Number</label>
-                                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="9781405080583">
-                                <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Book Title</label>
-                                <input type="text" class="form-control" id="title-input" placeholder="Doctor No">
-                            </div>
-                            <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
-                        </form>
-                    </p>
+                    <p class="card-text"></p>
+                    <form>
+                        <div class="form-group">
+                            <label for="isbn">ISBN-10 Number</label> <input aria-describedby="isbnHelp" class="form-control" id="isbn-input" placeholder="9781405080583" type="text"> <small class="form-text text-muted" id="emailHelp">Must be 10 digits long</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Book Title</label> <input class="form-control" id="title-input" placeholder="Doctor No" type="text">
+                        </div><button class="btn btn-info" id="bookSearch" type="submit">Search</button>
+                    </form>
+                    <p></p>
                 </div>
             </div>
-
             <div>
                 <h3>Book Search Results:</h3>
-                <ul id="book-info" class="list-group">
-                </ul>
+                <ul class="list-group" id="book-info"></ul>
             </div>
-
-            <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        
-      </div>
-    </div>
-  </div>
-</div>
-        
-
-        
-          </div>
-    </div>
-  </div>
-</div>
-
-        </div>
-        <div class="col-md-2">
+            <div aria-hidden="true" aria-labelledby="bookModal" class="modal fade" id="bookModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"></h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 <link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -157,7 +127,7 @@ $.ajax({
     console.log("book info downloaded!");
   }
 }).then(function(result) {
-  $(".modal-title").empty() 
+  $(".modal-title").empty()
   $(".modal-body").empty()
   $(".modal-footer").empty()
 $(".modal-title").text(result.volumeInfo.title)
@@ -176,7 +146,7 @@ var $buttonExit = $("<button>")
 
 $(".modal-footer").append($buttonSave).append($buttonExit);
     $(".modal-body").append($div)
-}) 
+})
 })
 
 $(document).on("click", ".save", function(){
