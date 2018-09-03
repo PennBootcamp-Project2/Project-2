@@ -1,11 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Book = sequelize.define("Book", {
-        id: {
-          type: DataTypes.INTEGER,
-          primaryKey: true,
-        },
         isbn: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           required: true
         },
         title: {
@@ -34,9 +30,9 @@ module.exports = function(sequelize, DataTypes) {
         }
       });
     return Book;
-    Book.belongsToMany(User, {
-      through: UserBooks
-    })
+    // Book.belongsToMany(User, {
+    //   through: UserBooks
+    // })
   };
   
 

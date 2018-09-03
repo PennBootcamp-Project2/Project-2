@@ -201,6 +201,7 @@
         rating: result.volumeInfo.averageRating,
         price: result.saleInfo.saleability,
         isbn: result.volumeInfo.industryIdentifiers[1].identifier,
+        link: result.volumeInfo.previewLink
       }
       console.log(bookSubmission);
       var sendBook = $.ajax({

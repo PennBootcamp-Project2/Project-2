@@ -69,29 +69,26 @@ module.exports = function (app) {
 
   app.post("/api/newbook", function (req,res){
     console.log("on server");
-    console.log(req);
-    // console.log(JSON.stringify(req));
-    res.json("Hello");
-    // db.Book.create({
-    //   isbn: '0670813028',
-    //   title: "It",
-    //   author: "Stephen King",
-    //   purchase_link: "https://test.amazon.com",
-    //   price: 12.00,
-    //   average_rating: 4, 
-    //   description: "This is a test"
-    // }).then(function(added){
-    //   console.log('added to books');
-    //   db.Book.findAll({
-    //   }).then(function(show){
-    //     console.log('found all books');
-    //     res.json("book saved");
-    //   });
-    // }).catch(function(err){
-    //   console.log(err);
-    //   res.json(err); 
-    // })
+    console.log(req.body);
+    
+    db.Book.create({
+      isbn: req.body.isbn,
+      title: req.body.title,
+      author: req.body.authors,
+      purchase_link: req.body.link,
+      price: req.body.price,
+      average_rating: req.body.rating, 
+      description: req.body.description
+    }).then(function(added){
+        console.log('added to books');
+      }).then(function(show){
+        res.json("book saved");
+    }).catch(function(err){
+        console.log(err);
+        res.json(err); 
+    })
   });
+
 
 
   app.get("/api/books", function(req, res) {
