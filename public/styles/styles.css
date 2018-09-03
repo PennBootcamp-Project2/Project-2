@@ -1,3 +1,27 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.main-nav {
+  background-color: #303030;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 20px;
+}
+
+.main-nav-link {
+  color: white;
+}
+
+.main-nav-link:hover {
+  color: grey;
+}
+
+.main-nav-link:active {
+  color: #c13f10;
+}
+
+.page-title {
+  font-size: 28px;
+  color: white;
+}

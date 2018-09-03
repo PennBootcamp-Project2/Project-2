@@ -4,9 +4,12 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-    line-height: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: url("/img/books.png") no-repeat center;
+    background-size: cover;
 }
 
 button {
@@ -140,20 +143,22 @@ input::placeholder {
  * Page background
  */
 
- .header {
-     font-size: 50px;
-
- }
+.header {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    background-color: rgba(34, 34, 34, 0.85);
+}
 
 .user {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    background: url("/img/books.png") no-repeat center;
     background-size: cover;
+    margin-top: 150px;
 }
+
 .user_options-container {
     position: relative;
     width: 80%;

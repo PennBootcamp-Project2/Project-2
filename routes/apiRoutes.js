@@ -1,13 +1,13 @@
 var db = require("../models");
 var bcrypt = require("bcrypt");
 
-module.exports = function (app) {
-  app.post("/login", function (req, res) {
+module.exports = function(app) {
+  app.post("/login", function(req, res) {
     db.User.findOne({
       where: {
         email: req.body.email
       }
-    }).then(function (user) {
+    }).then(function(user) {
       if (!user) {
         return res.json({
           success: false,
@@ -15,8 +15,10 @@ module.exports = function (app) {
         });
       }
 
-      bcrypt.compare(req.body.password, user.password, function (err, success) {
+      bcrypt.compare(req.body.password, user.password, function(err, success) {
         if (success) {
+          req.session.userId = user.id;
+
           return res.json({
             success: true,
             message: "User Found!"
@@ -31,12 +33,12 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/signup", function (req, res) {
+  app.post("/signup", function(req, res) {
     db.User.findOne({
       where: {
         email: req.body.email
       }
-    }).then(function (user) {
+    }).then(function(user) {
       if (user) {
         return res.json({
           success: false,
@@ -44,22 +46,21 @@ module.exports = function (app) {
         });
       }
 
-      bcrypt.hash(req.body.password, 10, function (err, hash) {
+      bcrypt.hash(req.body.password, 10, function(err, hash) {
         db.User.create({
           email: req.body.email,
           password: hash
-        }).then(
-          function () {
-            return res.json({
-              success: true,
-              message: "User created!"
-            });
-          }
-        );
+        }).then(function(user) {
+          req.session.userId = user.id;
+
+          return res.json({
+            success: true,
+            message: "User created!"
+          });
+        });
       });
     });
   });
-
 
   // app.post('http://localhost:3000/result', function (req, res) {
   //     // let input = JSON.stringify(req.body.items)
@@ -111,8 +112,5 @@ module.exports = function (app) {
     }).then(function(dbBooks) {
       res.json(dbBooks);
     });
-
   });
-
-
 }
