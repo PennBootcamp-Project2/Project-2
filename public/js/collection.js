@@ -1,37 +1,39 @@
 $(document).ready(function() {
-  var slideContainer = $(".slide-container");
-  var slideList = $(".slide-list");
+  var slideContainer = $("#slide-container");
+  var slideList = $("#slide-list");
 
-  $(document).on("click", "button.delete", deleteBook);
-  $(document).on("click", "button.regimen", regimenBook);
+  // $(document).on("click", "button.delete", deleteBook);
+  // $(document).on("click", "button.regimen", regimenBook);
+  var books = [];
+
+  getBooks();
+
+  function initializeRows() {
+    slideContainer.empty();
+    var addCollection = [];
+    for (var i = 0; i < books.length; i++) {
+      addCollection.push(addBook(books[i]));
+    }
+    slideContainer.append(addCollection);
+  }
 
   function getBooks() {
     $.get("/api/books", function(data) {
       console.log("Books", data);
       books = data;
+      newListItems();
       initializeRows();
     });
   }
 
-  function initializeRows() {
-    slideContainer.empty();
+  function newListItems() {
     slideList.empty();
-    var addCollection = [];
+    var slideItem = [];
     for (var i = 0; i < books.length; i++) {
-      addCollection.push(addBook(books[i]));
-      var newList = $("<li data-target='#carousel-example'>");
-
-      newList.attr("data-slide-to", i);
-
-      if (i = 0) {
-        newList.addClass("active");
-      }
-
+      slideItem.push(addNewList(books[i]));
     }
-    slideContainer.append(newlist);
-    slideList.append(addCollection);
+    slideList.append(slideItem);
   }
-
 
   function deleteBook(event) {
     event.stopPropagation();
@@ -46,29 +48,31 @@ $(document).ready(function() {
     // Holds dynamic data 
     var newList = $("<li data-target='#carousel-example' data-slide-to='0' class='active'>");
 
-    var newSlide = $("<div class='carousel-inner' role='listbox'><div class='carousel-item active'><img class='d-block w-100' src='../img/books.png'><div class='mask rgba-black-light'>");
+    var newSlide = $("<div class='carousel-item'><img class='d-block w-100' src='../img/Books03.jpg'><div class='mask rgba-black-light'>");
+    var activeSlide = "";
+
+    var classSlide = book.id - 1;
+    if (classSlide === 0) {
+      activeSlide = "active";
+    }
     
     var newSlideCaption = $("<div class='carousel-caption'>");
     var newSlideView = $("<div class='text-center'>");
 
-    // Needs to be repeated and will be subbed out with database response
-    var bookImage = "http://books.google.com/books/content?id=3YUrtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-    var bookTitle = "Harry Potter and the Sorcer's Stone";
-    var bookAuthor = "JK Rowling";
-    var bookBuyLink = "https://play.google.com/store/books/details?id=lFO3DAAAQBAJ&rdid=book-lFO3DAAAQBAJ&rdot=1&source=gbs_api";
-    var newSlideImage = $("<img class='rounded' style='width: 300px; height: 350px'>");
-    newSlideImage.attr("src", bookImage);
-    newSlideImage.attr("alt", bookTitle);
-    var newSlideTitle = $("<h3>");
-    newSlideTitle.text(bookTitle);
-    var newSlideAuthor = $("<p>");
+    var newSlideImage = $("<img class='rounded' style='width: 300px; height: 350px'><br><br><br>");
+    newSlideImage.attr("src", book.image_link);
+    newSlideImage.attr("alt", book.title);
+    var newSlideTitle = $("<h3 class='text-dark'>");
+    newSlideTitle.text(book.title);
+    var newSlideAuthor = $("<p class='text-muted'>");
     newSlideAuthor.addClass("author");
-    newSlideAuthor.text(bookAuthor);
+    newSlideAuthor.text(book.author);
     var newBuy = $("<a>");
-    newBuy.attr("href", bookBuyLink);
+    newBuy.attr("href", book.purchase_link);
     var newButton = $("<button class='btn btn-dark btn-lg' id='button-delete'><span class='fa fa-eye'></span>Delete from Collection</button>&nbsp;&nbsp;<button class='btn btn-white btn-lg' id='button-regimen'><span class='fa fa-eye'></span>Move to Regimen</button>");
     
     // Slides -- One per Book
+    newSlide.addClass(activeSlide);
     newSlide.append(newSlideCaption);
     newSlideCaption.append(newSlideView);
     newSlideView.append(newSlideImage);
@@ -80,4 +84,23 @@ $(document).ready(function() {
 
 }
 
+function addNewList(book) {
+
+    var newList = $("<li data-target='#carousel-example'>");
+    var dataClass = "";
+
+    for (var i = 0; i < books.length; i++) {
+      var dataSlide = i + 1;
+  }
+
+    var dataSlide = book.id - 1;
+
+    if (dataSlide === 0) {
+      dataClass = "active";
+    }
+
+    newList.attr("data-slide-to", dataSlide);
+    newList.addClass(dataClass);
+    return newList;
+}
 });
