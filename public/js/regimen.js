@@ -53,10 +53,10 @@ $('#dateInput').click(function (event) {
     console.log(pageCount, bookTitle)
     var pagesPerDay = requiredReading(endDate, pageCount)
     $('#calendar').fullCalendar('renderEvent', {
-                title: bookTitle,
+                title: "Big Iron",
                 start: new Date(),
-                end: endDate,
-                stick: true
-            })
-    //Only allows for one event at a time at this point. 
+                end: endDate
+            }
+)
+    console.log("Well, it ran.")
 })
