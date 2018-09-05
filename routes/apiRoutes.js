@@ -106,8 +106,8 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function(dbBooks) {
-      res.json(dbBooks);
+    }).then(function(dbBook) {
+      res.json(dbBook);
     });
   });
 }
