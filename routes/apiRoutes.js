@@ -62,12 +62,6 @@ module.exports = function(app) {
     });
   });
 
-  // app.post('http://localhost:3000/result', function (req, res) {
-  //     // let input = JSON.stringify(req.body.items)
-  //     // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
-  //     // input.title = (req.body.items[0].volumeInfo.title);
-  //   console.log(req.body)
-
   app.post("/api/newbook", function (req,res){
     console.log("on server");
     console.log(req.body);
@@ -80,7 +74,8 @@ module.exports = function(app) {
       price: req.body.price,
       average_rating: req.body.rating, 
       description: req.body.description,
-      image_link: req.body.image
+      image_link: req.body.image,
+      page_count: req.body.page_count
     }).then(function(added){
         console.log(req.body.title + ' added to books');
       }).then(function(show){

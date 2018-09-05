@@ -12,7 +12,6 @@ function getBooks() {
     });
   }
 
-  getBooks()
   $(function() {
     $('#calendar').fullCalendar({
     })
