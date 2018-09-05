@@ -64,12 +64,13 @@ $(document).ready(function() {
     newSlideImage.attr("alt", book.title);
     var newSlideTitle = $("<h3 class='text-dark'>");
     newSlideTitle.text(book.title);
-    var newSlideAuthor = $("<p class='text-muted'>");
+    var newSlideAuthor = $("<p class='text-muted'><br>");
     newSlideAuthor.addClass("author");
     newSlideAuthor.text(book.author);
     var newBuy = $("<a>");
+    newBuy.text("Buy It Now");
     newBuy.attr("href", book.purchase_link);
-    var newButton = $("<button class='btn btn-dark btn-lg' id='button-delete'><span class='fa fa-eye'></span>Delete from Collection</button>&nbsp;&nbsp;<button class='btn btn-white btn-lg' id='button-regimen'><span class='fa fa-eye'></span>Move to Regimen</button>");
+    var newButton = $("<br><br><button class='btn btn-dark btn-lg' id='button-delete'><span class='fa fa-eye'></span>Delete from Collection</button>&nbsp;&nbsp;<button class='btn btn-white btn-lg' id='button-regimen'><span class='fa fa-eye'></span>Move to Regimen</button>");
     
     // Slides -- One per Book
     newSlide.addClass(activeSlide);
