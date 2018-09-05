@@ -11,7 +11,7 @@ My Reader Regimen was designed for those who:
 
 ## How to run
 - You will need to install the packages with `npm install`
-- To start using FriendFinder run `node server.js`
+- To start using My Reader Regimen run `node server.js`
 - Access the site in your browser by going to `http://localhost:3000/`
 
 
