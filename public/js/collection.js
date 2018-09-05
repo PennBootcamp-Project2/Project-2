@@ -103,4 +103,8 @@ function addNewList(book) {
     newList.addClass(dataClass);
     return newList;
 }
+
+$(document).on("click", ".btn-white", function () {
+  bookId = $(this).attr("data-id")
+}
 });

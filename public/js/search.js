@@ -1,13 +1,18 @@
 $('#bookSearch').click(function (event) {
     event.preventDefault();
     console.log('bookSearch button clicked');
-
-    let input = {};
+    var input = {};
     input.isbn = $("#isbn-input").val();
     input.title = $("#title-input").val();
-
-
-    let queryURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + input.isbn + "&key=" + "AIzaSyDdxaUEx5j0RsXLGcsviwOwOVMZ2QBLLBo"
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q="
+    if (input.isbn) {
+      queryURL = queryURL + "+isbn:" + input.isbn
+    }
+    if (input.title) {
+      queryURL = queryURL + "+intitle:" + input.title
+    }
+    console.log(queryURL)
+    
     $.ajax({
       url: queryURL,
       type: "GET"
