@@ -18,7 +18,6 @@ module.exports = function(app) {
       bcrypt.compare(req.body.password, user.password, function(err, success) {
         if (success) {
           req.session.userId = user.id;
-
           return res.json({
             success: true,
             message: "User Found!"
@@ -68,11 +67,14 @@ module.exports = function(app) {
   //     // input.title = (req.body.items[0].volumeInfo.title);
   //   console.log(req.body)
 
+
+  
   app.post("/api/newbook", function (req,res){
     console.log("on server");
-    console.log(req.body);
     
-    db.Book.create({
+    let currentUser = db.User.findById(req.session.userId);
+    
+    let newBook = db.Book.create({
       isbn: req.body.isbn,
       title: req.body.title,
       author: req.body.authors,
@@ -81,15 +83,29 @@ module.exports = function(app) {
       average_rating: req.body.rating, 
       description: req.body.description,
       image_link: req.body.image
-    }).then(function(added){
-        console.log(req.body.title + ' added to books');
-      }).then(function(show){
-        res.json("book saved");
-    }).catch(function(err){
-        console.log(err);
-        res.json(err); 
+    });
+
+
+    return Promise.all([
+      newBook, 
+      currentUser
+    ])
+    .then(function([book, user]) {
+      console.log("--");
+      console.log("here");
+      
+      user.addBook(book).then(function() {
+        console.log(book); 
+        console.log("======");
+        console.log(user);
+        res.send({book, user});
+      });
+    })
+    .catch(function(err){
+      console.log(err);
     })
   });
+
 
 
   app.get("/api/books", function(req, res) {
