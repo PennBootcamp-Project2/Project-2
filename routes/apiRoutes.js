@@ -111,7 +111,6 @@ module.exports = function(app) {
 
 
 
-
   app.get("/api/books", function(req, res) {
 
     let currentUser = req.session.userId;
@@ -126,6 +125,7 @@ module.exports = function(app) {
       }]
 
 
+
     }).then(function(dbBooks) {
       res.json(dbBooks);
     }).catch(function(err){
@@ -133,6 +133,7 @@ module.exports = function(app) {
       res.json(err);
     })
   });
+
 
   app.delete("/api/books/:id", function(req, res) {
     // We just have to specify which todo we want to destroy with "where"
