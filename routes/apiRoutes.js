@@ -84,7 +84,7 @@ module.exports = function(app) {
       price: req.body.price,
       average_rating: req.body.rating, 
       description: req.body.description,
-      page_count: req.body.pageCount,
+      page_count: req.body.page_count,
       image_link: req.body.image
     });
 
