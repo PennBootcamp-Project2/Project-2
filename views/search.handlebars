@@ -1,27 +1,24 @@
 <div class="container-fluid">
   <br>
   <br>
-  <div class="row">
-    <hr>
     <div class="col-md-2">
     </div>
-    <div class="col-md-8" id="search-box">
+    <div class="col-sm" id="search-box">
       <div class="card bg-default">
-        <h5 class="card-header">
-          Search for a Book
-        </h5>
+        <h5 class="card-header">Search for a Book to Add to Your Collection</h5>
         <div class="card-body">
           <p class="card-text">
             <form>
               <div class="form-group">
-                <label for="isbn">ISBN-10 Number</label>
-                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="9781405080583">
+                <label for="isbn">ISBN NUMBER</label>
+                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="Enter 10 digit ISBN number">
                 <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
               </div>
               <div class="form-group">
-                <label for="title">Book Title</label>
-                <input type="text" class="form-control" id="title-input" placeholder="Doctor No">
+                <label for="title">BOOK TITLE</label>
+                <input type="text" class="form-control" id="title-input" placeholder="Enter book title">
               </div>
+              <br>
               <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
             </form>
           </p>
@@ -29,10 +26,12 @@
       </div>
 
       <div>
-        <h3>Book Search Results:</h3>
+       <br> 
+        <h3><div class="result-header">Search Results</div></h3>
         <ul id="book-info" class="list-group">
         </ul>
       </div>
+      <br>
 
       <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
