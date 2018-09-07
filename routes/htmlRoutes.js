@@ -31,6 +31,10 @@ module.exports = function(app) {
     res.render("result", {});
   });
 
+  app.get("/regimen", function(req, res) {
+    res.render("regimen", {});
+  });
+
   app.get("/logout", function(req, res) {
     delete req.session.userId;
 

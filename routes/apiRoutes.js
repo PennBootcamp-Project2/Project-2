@@ -61,6 +61,7 @@ module.exports = function(app) {
     });
   });
 
+
   // app.post('http://localhost:3000/result', function (req, res) {
   //     // let input = JSON.stringify(req.body.items)
   //     // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
@@ -69,6 +70,7 @@ module.exports = function(app) {
 
 
   
+
   app.post("/api/newbook", function (req,res){
     console.log("on server");
     
@@ -82,6 +84,7 @@ module.exports = function(app) {
       price: req.body.price,
       average_rating: req.body.rating, 
       description: req.body.description,
+
       image_link: req.body.image
     });
 
@@ -103,6 +106,17 @@ module.exports = function(app) {
     })
     .catch(function(err){
       console.log(err);
+
+      image_link: req.body.image,
+      page_count: req.body.page_count
+    }).then(function(added){
+        console.log(req.body.title + ' added to books');
+      }).then(function(show){
+        res.json("book saved");
+    }).catch(function(err){
+        console.log(err);
+        res.json(err); 
+
     })
   });
 
@@ -122,8 +136,8 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function(dbBooks) {
-      res.json(dbBooks);
+    }).then(function(dbBook) {
+      res.json(dbBook);
     });
   });
 }

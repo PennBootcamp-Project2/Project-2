@@ -32,6 +32,12 @@ module.exports = function(sequelize, DataTypes) {
         image_link: {
             type: DataTypes.STRING,
             required: false
+        },
+        page_count: {
+            type: DataTypes.INTEGER,
+        isbn: {
+            type: DataTypes.STRING,
+            required: false
         }
       });
     Book.associate = function(models){
