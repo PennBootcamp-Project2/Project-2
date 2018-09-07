@@ -12,7 +12,7 @@ $(document).ready(function() {
     slideContainer.empty();
     var addCollection = [];
     for (var i = 0; i < books.length; i++) {
-      addCollection.push(addBook(books[i]));
+      addCollection.push(addBook(books[i],i));
     }
     slideContainer.append(addCollection);
   }
@@ -30,7 +30,7 @@ $(document).ready(function() {
     slideList.empty();
     var slideItem = [];
     for (var i = 0; i < books.length; i++) {
-      slideItem.push(addNewList(books[i]));
+      slideItem.push(addNewList(books[i],i));
     }
     slideList.append(slideItem);
   }
@@ -44,14 +44,14 @@ $(document).ready(function() {
     }).then(books);
   }
 
-  function addBook(book) {
+  function addBook(book, index) {
     // Holds dynamic data 
     var newList = $("<li data-target='#carousel-example' data-slide-to='0' class='active'>");
 
     var newSlide = $("<div class='carousel-item'><img class='d-block w-100' src='../img/Books03.jpg'><div class='mask rgba-black-light'>");
     var activeSlide = "";
 
-    var classSlide = book.id - 1;
+    var classSlide = index;
     if (classSlide === 0) {
       activeSlide = "active";
     }
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 }
 
-function addNewList(book) {
+function addNewList(book, index) {
 
     var newList = $("<li data-target='#carousel-example'>");
     var dataClass = "";
@@ -98,7 +98,7 @@ function addNewList(book) {
       var dataSlide = i + 1;
     }
 
-    var dataSlide = book.id - 1;
+    var dataSlide = index;
 
     if (dataSlide === 0) {
       dataClass = "active";
@@ -109,7 +109,4 @@ function addNewList(book) {
     return newList;
 }
 
-$(document).on("click", ".btn-white", function () {
-  bookId = $(this).attr("data-id")
-}
 });

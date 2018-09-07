@@ -113,11 +113,25 @@ module.exports = function(app) {
 
 
   app.get("/api/books", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.Book.findAll({}).then(function(dbBook) {
-      // We have access to the todos as an argument inside of the callback function
-      res.json(dbBook);
-    });
+
+    let currentUser = req.session.userId;
+
+    console.log(currentUser);
+
+    db.Book.findAll({
+      // 
+      include: [{
+        model: db.User, 
+        where: {id: currentUser}
+      }]
+
+
+    }).then(function(dbBooks) {
+      res.json(dbBooks);
+    }).catch(function(err){
+      console.log(err); 
+      res.json(err);
+    })
   });
 
   app.delete("/api/books/:id", function(req, res) {

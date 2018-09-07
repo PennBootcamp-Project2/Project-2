@@ -47,6 +47,7 @@ module.exports = function(sequelize, DataTypes) {
             through: 'UserBooks'
         });
     }
+      
     return Book;
 
 

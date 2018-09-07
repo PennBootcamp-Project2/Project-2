@@ -21,3 +21,8 @@
   font-size: 55px;
   color: red;
 }
+
+.carousel-caption{
+  top: 50%;
+  transform: translateY(-50%);
+}
