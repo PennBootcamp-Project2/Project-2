@@ -18,7 +18,6 @@ module.exports = function(app) {
       bcrypt.compare(req.body.password, user.password, function(err, success) {
         if (success) {
           req.session.userId = user.id;
-
           return res.json({
             success: true,
             message: "User Found!"
@@ -62,11 +61,22 @@ module.exports = function(app) {
     });
   });
 
+
+  // app.post('http://localhost:3000/result', function (req, res) {
+  //     // let input = JSON.stringify(req.body.items)
+  //     // input.isbn = (req.body.items[0].volumeInfo.industryIdentifiers[0].identifier);
+  //     // input.title = (req.body.items[0].volumeInfo.title);
+  //   console.log(req.body)
+
+
+  
+
   app.post("/api/newbook", function (req,res){
     console.log("on server");
-    console.log(req.body);
     
-    db.Book.create({
+    let currentUser = db.User.findById(req.session.userId);
+    
+    let newBook = db.Book.create({
       isbn: req.body.isbn,
       title: req.body.title,
       author: req.body.authors,
@@ -74,6 +84,29 @@ module.exports = function(app) {
       price: req.body.price,
       average_rating: req.body.rating, 
       description: req.body.description,
+
+      image_link: req.body.image
+    });
+
+
+    return Promise.all([
+      newBook, 
+      currentUser
+    ])
+    .then(function([book, user]) {
+      console.log("--");
+      console.log("here");
+      
+      user.addBook(book).then(function() {
+        console.log(book); 
+        console.log("======");
+        console.log(user);
+        res.send({book, user});
+      });
+    })
+    .catch(function(err){
+      console.log(err);
+
       image_link: req.body.image,
       page_count: req.body.page_count
     }).then(function(added){
@@ -83,8 +116,10 @@ module.exports = function(app) {
     }).catch(function(err){
         console.log(err);
         res.json(err); 
+
     })
   });
+
 
 
   app.get("/api/books", function(req, res) {
