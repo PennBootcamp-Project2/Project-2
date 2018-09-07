@@ -81,10 +81,10 @@ module.exports = function(app) {
       title: req.body.title,
       author: req.body.authors,
       purchase_link: req.body.link,
-      price: req.body.price,
+      price: req.body.listPrice,
       average_rating: req.body.rating, 
       description: req.body.description,
-      page_count: req.body.pageCount,
+      page_count: req.body.page_count,
       image_link: req.body.image
     });
 
