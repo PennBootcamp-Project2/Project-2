@@ -2,8 +2,8 @@ $(document).ready(function() {
   var slideContainer = $("#slide-container");
   var slideList = $("#slide-list");
 
-  // $(document).on("click", "button.delete", deleteBook);
-  // $(document).on("click", "button.regimen", regimenBook);
+  $(document).on("click", "#button-delete", deleteBook);
+  // $(document).on("click", "#button-regimen", regimenBook);
   var books = [];
 
   getBooks();
@@ -64,13 +64,17 @@ $(document).ready(function() {
     newSlideImage.attr("alt", book.title);
     var newSlideTitle = $("<h3 class='text-dark'>");
     newSlideTitle.text(book.title);
-    var newSlideAuthor = $("<p class='text-muted'>");
+    var newSlideAuthor = $("<h5 class='text-danger'><br>");
     newSlideAuthor.addClass("author");
     newSlideAuthor.text(book.author);
-    var newBuy = $("<a>");
+    var newBuy = $("<a target='_blank'>");
+    newBuy.text("Buy It Now");
     newBuy.attr("href", book.purchase_link);
-    var newButton = $("<button class='btn btn-dark btn-lg' id='button-delete'><span class='fa fa-eye'></span>Delete from Collection</button>&nbsp;&nbsp;<button class='btn btn-white btn-lg' id='button-regimen'><span class='fa fa-eye'></span>Move to Regimen</button>");
-    
+    var deleteButton = $("<br><br><button class='delete btn btn-dark btn-lg' id='button-delete'><span class='fa fa-eye'></span>Delete from Collection</button>&nbsp;&nbsp;");
+    var regimenButton = $("<button class='regimen btn btn-white btn-lg' id='button-regimen'><span class='fa fa-eye'></span>Move to Regimen</button>");
+    deleteButton.data("id", book.id);
+    regimenButton.data("id", book.id);
+
     // Slides -- One per Book
     newSlide.addClass(activeSlide);
     newSlide.append(newSlideCaption);
@@ -79,7 +83,8 @@ $(document).ready(function() {
     newSlideCaption.append(newSlideTitle);
     newSlideCaption.append(newSlideAuthor);
     newSlideCaption.append(newBuy);
-    newSlideCaption.append(newButton);
+    newSlideCaption.append(deleteButton);
+    newSlideCaption.append(regimenButton);
     return newSlide;
 
 }
@@ -91,7 +96,7 @@ function addNewList(book) {
 
     for (var i = 0; i < books.length; i++) {
       var dataSlide = i + 1;
-  }
+    }
 
     var dataSlide = book.id - 1;
 
