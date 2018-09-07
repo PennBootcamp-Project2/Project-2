@@ -35,6 +35,8 @@ module.exports = function(sequelize, DataTypes) {
         },
         page_count: {
             type: DataTypes.INTEGER,
+            required: false
+        },
         isbn: {
             type: DataTypes.STRING,
             required: false
