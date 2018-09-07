@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var slideContainer = $("#slide-container");
   var slideList = $("#slide-list");
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
   }
 
   function getBooks() {
-    $.get("/api/books", function(data) {
+    $.get("/api/books", function (data) {
       console.log("Books", data);
       books = data;
       newListItems();
@@ -55,7 +55,7 @@ $(document).ready(function() {
     if (classSlide === 0) {
       activeSlide = "active";
     }
-    
+
     var newSlideCaption = $("<div class='carousel-caption'>");
     var newSlideView = $("<div class='text-center'>");
 
@@ -87,9 +87,9 @@ $(document).ready(function() {
     newSlideCaption.append(regimenButton);
     return newSlide;
 
-}
+  }
 
-function addNewList(book) {
+  function addNewList(book) {
 
     var newList = $("<li data-target='#carousel-example'>");
     var dataClass = "";
@@ -107,9 +107,9 @@ function addNewList(book) {
     newList.attr("data-slide-to", dataSlide);
     newList.addClass(dataClass);
     return newList;
-}
+  }
 
-$(document).on("click", ".btn-white", function () {
-  bookId = $(this).attr("data-id")
-}
+  $(document).on("click", ".btn-white", function () {
+    bookId = $(this).attr("data-id")
+  });
 });
