@@ -111,14 +111,17 @@ module.exports = function(app) {
 
 
 
-
   app.get("/api/books", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.Book.findAll({}).then(function(dbBook) {
-      // We have access to the todos as an argument inside of the callback function
-      res.json(dbBook);
-    });
+    db.Book.findAll({
+      // 
+    }).then(function(dbBooks) {
+      res.json(dbBooks);
+    }).catch(function(err){
+      console.log(err); 
+      res.json(err);
+    })
   });
+
 
   app.delete("/api/books/:id", function(req, res) {
     // We just have to specify which todo we want to destroy with "where"
