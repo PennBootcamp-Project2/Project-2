@@ -112,8 +112,20 @@ module.exports = function(app) {
 
 
   app.get("/api/books", function(req, res) {
+
+    let currentUser = req.session.userId;
+
+    console.log(currentUser);
+
     db.Book.findAll({
       // 
+      include: [{
+        model: db.User, 
+        where: {id: currentUser}
+      }]
+
+
+
     }).then(function(dbBooks) {
       res.json(dbBooks);
     }).catch(function(err){
