@@ -74,6 +74,7 @@ $('#bookSearch').click(function (event) {
       var $buttonSave = $("<button>")
         .addClass("btn btn-primary float-right save")
         .attr("data-id", result.id)
+        .attr("data-dismiss", "modal")
         .text("Save");
       var $buttonExit = $("<button>")
         .addClass("btn btn-primary float-right exit")
