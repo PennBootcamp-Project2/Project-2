@@ -81,7 +81,7 @@ module.exports = function(app) {
       title: req.body.title,
       author: req.body.authors,
       purchase_link: req.body.link,
-      price: req.body.listPrice,
+      price: req.body.price,
       average_rating: req.body.rating, 
       description: req.body.description,
       page_count: req.body.page_count,

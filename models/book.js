@@ -1,4 +1,4 @@
-const db = require(".")
+// const db = require(".")
 module.exports = function(sequelize, DataTypes) {
     const Book = sequelize.define("Book", {
         isbn: {

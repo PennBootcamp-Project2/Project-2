@@ -105,7 +105,6 @@ $('#bookSearch').click(function (event) {
         description: result.volumeInfo.description,
         page_count: result.volumeInfo.pageCount,
         rating: result.volumeInfo.averageRating,
-        price: result.saleInfo.price,listPrice
         isbn: result.volumeInfo.industryIdentifiers[1].identifier,
         link: result.volumeInfo.previewLink
       }
