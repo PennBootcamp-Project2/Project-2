@@ -17,10 +17,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING, 
             required: false
         }, 
-        current_book: {
-            type: DataTypes.BOOLEAN, 
-            required: false
-        },
+        // current_book: {
+        //     type: DataTypes.BOOLEAN, 
+        //     required: false
+        // },
         average_rating: {
             type: DataTypes.DECIMAL, 
             required: true
@@ -37,10 +37,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             required: false
         },
-        isbn: {
-            type: DataTypes.STRING,
-            required: false
-        }
       });
     Book.associate = function(models){
         Book.belongsToMany(models.User, { 
