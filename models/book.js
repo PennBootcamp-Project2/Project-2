@@ -1,5 +1,6 @@
+// const db = require(".")
 module.exports = function(sequelize, DataTypes) {
-    var Book = sequelize.define("Book", {
+    const Book = sequelize.define("Book", {
         isbn: {
           type: DataTypes.STRING,
           required: true
@@ -35,14 +36,23 @@ module.exports = function(sequelize, DataTypes) {
         page_count: {
             type: DataTypes.INTEGER,
             required: false
+        },
+        isbn: {
+            type: DataTypes.STRING,
+            required: false
         }
       });
+    Book.associate = function(models){
+        Book.belongsToMany(models.User, { 
+            through: 'UserBooks'
+        });
+    }
+      
     return Book;
-    // Book.belongsToMany(User, {
-    //   through: UserBooks
-    // })
+
+
   };
-  
+
 
 //   id int NOT NULL AUTO_INCREMENT,
 //     isbn int NOT NULL,

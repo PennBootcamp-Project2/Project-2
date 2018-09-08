@@ -3,6 +3,43 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
-    background: url("https://goo.gl/YRxqs1") no-repeat center;
+    background: url("/img/books2.png") center;
     background-size: cover;
 }
+
+.card-header {
+    font-family: "Montserrat", sans-serif;
+    background-color: #303625;
+    color: white;
+}
+
+.card-body {
+    background-color: #F8F8F8;
+}
+
+.form-group {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: #c13f10;
+}
+
+.result-header {
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 3px 3px 18px #1a1612;
+    padding: 5px;
+    color: #F8F8F8;
+}
+
+.btn {
+    font-family: "Montserrat", sans-serif;
+    background-color: #c13f10;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #303625;
+  }
+
+.btn:active {
+    background-color: #303625;
+  }
