@@ -23,6 +23,7 @@
     "fullcalendar": "^3.9.0",
     "mysql2": "^1.6.1",
     "proxy-addr": "^2.0.4",
+    "request": "^2.88.0",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
