@@ -1,70 +1,57 @@
 <div class="container-fluid">
-  <br>
-  <br>
     <div class="col-md-2">
     </div>
     <div class="col-sm" id="search-box">
-      <div class="card bg-default">
-        <h5 class="card-header">Search for a Book to Add to Your Collection</h5>
-        <div class="card-body">
-          <p class="card-text">
-            <form>
-              <div class="form-group">
-                <label for="isbn">ISBN NUMBER</label>
-                <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="Enter 10 digit ISBN number">
-                <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
-              </div>
-              <div class="form-group">
-                <label for="title">BOOK TITLE</label>
-                <input type="text" class="form-control" id="title-input" placeholder="Enter book title">
-              </div>
-              <br>
-              <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
-            </form>
-          </p>
+        <div class="card bg-default">
+            <h5 class="card-header">Search for a Book to Add to Your Collection</h5>
+            <div class="card-body">
+                <p class="card-text">
+                    <form>
+                        <div class="form-group">
+                            <label for="isbn">ISBN NUMBER</label>
+                            <input type="text" class="form-control" id="isbn-input" aria-describedby="isbnHelp" placeholder="Enter 10 digit ISBN number">
+                            <small id="emailHelp" class="form-text text-muted">Must be 10 digits long</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">BOOK TITLE</label>
+                            <input type="text" class="form-control" id="title-input" placeholder="Enter book title">
+                        </div>
+                        <br>
+                        <button id="bookSearch" type="submit" class="btn btn-info">Search</button>
+                    </form>
+                </p>
+            </div>
         </div>
-      </div>
 
-
-      <div class="container-fluid">
-        <h3>Book Search Results:</h3>
-        <ul id="book-info" class="list-group">
-        </ul>
-      </div>
-      <br>
-
-      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-
-            </div>
-          </div>
+        <div>
+            <br>
+            <h3><div id="search-results-title" class="result-header" style="display: none;">Search Results</div></h3>
+            <ul id="book-info" class="list-group">
+            </ul>
         </div>
-      </div>
+        <br>
 
+        <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-  </div>
 </div>
-</div>
-
-</div>
-<div class="col-md-2">
-</div>
-</div>
-</div>
-
 
 <link rel="stylesheet" href="/styles/search.css" media="screen" charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -360,6 +360,13 @@ input::placeholder {
 
     .user_options-registered,
     .user_options-unregistered {
-        padding: 50px 45px;
+        padding: 20px;
     }
+}
+
+.alert-warning {
+    font-family: 'Times New Roman', Times, serif;
+    color: #1a1612;
+    font-size: 17px;
+    margin: 10px;
 }

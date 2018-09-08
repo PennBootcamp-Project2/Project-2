@@ -28,12 +28,12 @@ $("#submit-signup").on("click", function(event) {
   var password = $("#signup-password").val();
 
   if (email === "") {
-    alert("please enter an email address");
+    $('#signup-error').html("Please enter email address.").show();
     return;
   }
 
   if (password === "") {
-    alert("please enter a password");
+    $('#signup-error').html("Please enter password.").show();
     return;
   }
 
@@ -46,7 +46,7 @@ $("#submit-signup").on("click", function(event) {
     if (data.success === true) {
       window.location.replace("/");
     } else {
-      alert(data.message);
+      $('#signup-error').html(data.message).show();
     }
   });
 });
@@ -56,12 +56,12 @@ $("#submit-login").click(function() {
   var password = $("#login-password").val();
 
   if (email === "") {
-    alert("please enter an email address");
+    $('#login-error').html("Please enter email address.").show();
     return;
   }
 
   if (password === "") {
-    alert("please enter a password");
+    $('#login-error').html("Please enter password.").show();
     return;
   }
 
@@ -74,7 +74,7 @@ $("#submit-login").click(function() {
     if (data.success === true) {
       window.location.replace("/");
     } else {
-      alert(data.message);
+      $('#login-error').html(data.message).show();
     }
   });
 });
