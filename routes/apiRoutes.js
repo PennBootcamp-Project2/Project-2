@@ -131,6 +131,8 @@ module.exports = function(app) {
     })
   });
 
+  
+
 
 //change '1' parameter to :bookId
   app.put("/api/books/:current", function(req,res){
@@ -150,14 +152,16 @@ module.exports = function(app) {
   
 
   app.get("/api/books/regimen", function(req, res) {
-    let myBook = req.body.book;
-    // req.body.regimenBook
+    let currentUser = req.session.userId;
+    let myBook = db.Book.findOne({
+      where: {title: req.body.book.title }
+    });
     let regimen = db.Regimen.create({
-      page_count: 123,
-      current_page: 12, 
-      start_date: 08/26/2018,
-      end_date: 10/26/2018,
-      userId: 1,
+      page_count: req.body.book.page_count,
+      current_page: req.body.book.current_page, 
+      start_date: req.body.book.start_date,
+      end_date: req.body.book.end_date,
+      userId: currentUser,
       bookId: myBook
     });
     
@@ -165,8 +169,8 @@ module.exports = function(app) {
       myBook, 
       regimen
     ])
-    .then(function([book, regimen]) {
-      console.log(book);
+    .then(function([myBook, regimen]) {
+      console.log(myBook);
       console.log(regimen);
       res.send({book, regimen});
     })

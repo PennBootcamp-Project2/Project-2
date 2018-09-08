@@ -89,13 +89,24 @@ $( document ).ready(function() {
             var startDate = moment();
             
             let book = {
-                title = bookTitle,
-                page_count = pageCount,
-                current_page = currentPage,
-                start_date = startDate,
-                end_date = endDate,
+                title: bookTitle,
+                page_count: pageCount,
+                current_page: currentPage,
+                start_date: startDate,
+                end_date: endDate,
             }
             
+            $.ajax({
+                method: "POST",
+                url: "/api/books/regimen",
+                data: {
+                    bookTitle: book.title,
+                    page_count: book.pageCount,
+                    current_page: book.currentPage,
+                    start_date: book.startDate,
+                    end_date: book.endDate
+                }
+            })
             //Put UPDATE/POST link here. Update start date, end date and current page where the title matches
             
             regimenDisplayGenerator(bookSubmission)
