@@ -46,11 +46,13 @@ $(document).ready(function() {
     });
   }
 
-  function regimenBook(book) {
+  function regimenBook(data) {
+    var id = $(this).data("id");
+    console.log(id);
     $.ajax({
-      method: "POST",
-      url: "/api/books/current",
-      data: book
+      method: "PUT",
+      url: "/api/books/" + id
+      // data: "test"
     }).then(function() {
       window.location.replace("/regimen");
     });
