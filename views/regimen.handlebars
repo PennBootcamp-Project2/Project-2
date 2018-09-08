@@ -1,41 +1,32 @@
-<div class="container-fluid">
-    <div class="col-md-2">
-    </div>
-    <div class="col-sm" id="search-box"></div>
-    <div class="card bg-default">
-        <h5 class="card-header">Select Your Prospective End Date for Your Regimen</h5>
+
+
+<div class="card bg-default">
         <div class="card-body">
-            <p class="card-text">
-                <form>
-                    {{!--
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Toggle this Dropdown
-                            <span class="caret"></span></button>
-                        <ul id="selectedBook" class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        </ul>
-                    </div>
-                    <br> --}}
-                    <div class="form-group">
-                        <label for="date-input">DATE</label>
-                        <input type="date" class="form-control" id="date-input" aria-describedby="date">
-                    </div>
-                    <br />
-                    <button id="regimenInput" type="submit" class="btn btn-info">Save New</button>
-                </form>
-            </p>
-        </div>
-    </div>
+          <p class="card-text">
+            <form>
+              {{!-- <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Toggle this Dropdown
+    <span class="caret"></span></button>
+    <ul id="selectedBook" class="dropdown-menu" role="menu" aria-labelledby="menu1">
 
-    <div class="card bg-default">
+    </ul>
+  </div><br> --}}
+              <div class="form-group">
+                <label for="date-input">Please select the prospective end date.</label>
+                <input type="date" class="form-control" id="date-input" aria-describedby="date">
+              </div>
+              <button id="regimenInput" type="submit" class="btn btn-info">Save New</button>
+            </form>
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-default">
         <div class="card-body">
-            <p class="card-text">
-                <div id="regimenDisplay"></div>
-
-            </p>
+          <p class="card-text">
+            <div id="regimenDisplay"></div>
+            
+          </p>
         </div>
-    </div>
-</div>
-
-<link rel="stylesheet" href="/styles/regimen.css" media="screen" charset="utf-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      </div>
 <script src="/js/regimen.js"></script>

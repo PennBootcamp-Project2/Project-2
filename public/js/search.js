@@ -107,6 +107,7 @@ $('#bookSearch').click(function (event) {
         description: result.volumeInfo.description,
         page_count: result.volumeInfo.pageCount,
         rating: result.volumeInfo.averageRating,
+        price: result.saleInfo.saleability,
         isbn: result.volumeInfo.industryIdentifiers[1].identifier,
         link: result.volumeInfo.previewLink
       }
@@ -120,7 +121,7 @@ $('#bookSearch').click(function (event) {
         data: JSON.stringify(bookSubmission),
         success: function (response) {
           console.log("book sent to server");
-          alert(bookSubmission.title + " has been saved to collection!");
+          // alert(bookSubmission.title + " has been saved to collection!");
         },
         error: function (response) {
           console.log(err);
