@@ -3,6 +3,20 @@ var bcrypt = require("bcrypt");
 
 module.exports = function(app) {
   app.post("/login", function(req, res) {
+    if (req.body.email === "") {
+      return res.json({
+        success: false,
+        message: "Please enter an email address!"
+      });
+    }
+    
+    if (req.body.password === "") {
+      return res.json({
+        success: false,
+        message: "Please enter an password!"
+      });
+    }
+    
     db.User.findOne({
       where: {
         email: req.body.email
@@ -100,7 +114,6 @@ module.exports = function(app) {
       user.addBook(book).then(function() {
         console.log(book); 
         console.log("======");
-        console.log(user);
         res.send({book, user});
       });
     })
@@ -115,7 +128,7 @@ module.exports = function(app) {
 
     let currentUser = req.session.userId;
 
-    console.log(currentUser);
+    // console.log(currentUser);
 
     db.Book.findAll({
       //
@@ -131,8 +144,11 @@ module.exports = function(app) {
     })
   });
 
+  
+
 
 //change '1' parameter to :bookId
+
 app.put("/api/books/:current", function(req,res){
   let book = req.params.current; 
   
@@ -159,6 +175,7 @@ app.put("/api/books/:current", function(req,res){
       current_page: req.body.book.current_page, 
       start_date: req.body.book.start_date,
       end_date: req.body.book.end_date,
+      userId: currentUser,
       bookId: myBook
     });
     
@@ -166,8 +183,8 @@ app.put("/api/books/:current", function(req,res){
       myBook, 
       regimen
     ])
-    .then(function([book, regimen]) {
-      console.log(book);
+    .then(function([myBook, regimen]) {
+      console.log(myBook);
       console.log(regimen);
       res.send({book, regimen});
     })
