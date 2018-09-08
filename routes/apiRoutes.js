@@ -3,6 +3,20 @@ var bcrypt = require("bcrypt");
 
 module.exports = function(app) {
   app.post("/login", function(req, res) {
+    if (req.body.email === "") {
+      return res.json({
+        success: false,
+        message: "Please enter an email address!"
+      });
+    }
+    
+    if (req.body.password === "") {
+      return res.json({
+        success: false,
+        message: "Please enter an password!"
+      });
+    }
+    
     db.User.findOne({
       where: {
         email: req.body.email
