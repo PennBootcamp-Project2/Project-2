@@ -114,7 +114,7 @@ $( document ).ready(function() {
             .attr("aria-valuenow", pagePercentage)
             .text(bookTitle + ": " + pagePercentage + "%")
             .attr("role","progressbar");
-            var $div = $("<div>").text("Current progress:").addClass("progress").attr("style", "height: 40px").append($progress)
+            var $div = $("<div>").addClass("progress").attr("style", "height: 40px").append($progress)
             
             $("#regimenDisplay").append($h3).append($p).append($label).append($input).append($button).append($div)
         }
