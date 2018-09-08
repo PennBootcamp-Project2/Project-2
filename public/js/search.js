@@ -109,7 +109,8 @@ $('#bookSearch').click(function (event) {
         rating: result.volumeInfo.averageRating,
         price: result.saleInfo.saleability,
         isbn: result.volumeInfo.industryIdentifiers[1].identifier,
-        link: result.volumeInfo.previewLink
+        link: result.volumeInfo.previewLink,
+        current_book: false
       }
       console.log(bookSubmission);
       var sendBook = $.ajax({

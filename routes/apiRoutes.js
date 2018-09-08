@@ -148,8 +148,9 @@ module.exports = function(app) {
 
 
 //change '1' parameter to :bookId
-  app.put("/api/books/:current", function(req,res){
-    let book = req.params.current; 
+
+app.put("/api/books/:current", function(req,res){
+  let book = req.params.current; 
   
     db.Book.update(
       { current_book: "true" },
