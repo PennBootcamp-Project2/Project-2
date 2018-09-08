@@ -114,7 +114,6 @@ module.exports = function(app) {
       user.addBook(book).then(function() {
         console.log(book); 
         console.log("======");
-        console.log(user);
         res.send({book, user});
       });
     })
@@ -129,7 +128,7 @@ module.exports = function(app) {
 
     let currentUser = req.session.userId;
 
-    console.log(currentUser);
+    // console.log(currentUser);
 
     db.Book.findAll({
       //

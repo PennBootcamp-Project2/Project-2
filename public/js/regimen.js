@@ -89,7 +89,7 @@ $( document ).ready(function() {
             var startDate = moment();
             
             let book = {
-                title: bookTitle,
+                title: bookTitle, 
                 page_count: pageCount,
                 current_page: currentPage,
                 start_date: startDate,
