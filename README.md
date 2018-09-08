@@ -8,6 +8,7 @@ My Reader Regimen was designed for those who:
 3. Wants to read more, but needs support to keep track of their reading schedule
 
 ## View app on Heroku
+https://fathomless-temple-53226.herokuapp.com/
 
 ## How to run
 - You will need to install the packages with `npm install`

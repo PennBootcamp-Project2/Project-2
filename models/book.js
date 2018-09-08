@@ -17,8 +17,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING, 
             required: false
         }, 
-        price: {
-            type: DataTypes.INTEGER, 
+        current_book: {
+            type: DataTypes.BOOLEAN, 
             required: false
         },
         average_rating: {
