@@ -23,7 +23,7 @@ $('#bookSearch').click(function (event) {
       var books = result.items
       for (i = 0; i < books.length; i++) {
         console.log("tick")
-        var $li = $("<li>").text(books[i].volumeInfo.title).addClass("list-group-item")
+        var $li = $("<li>").text(books[i].volumeInfo.title + ", by " + books[i].volumeInfo.authors.join(", ")).addClass("list-group-item")
         var $button = $("<button>").addClass("btn btn-primary select float-right").text("Select").attr("data-target", ".modal").attr("data-toggle", "modal").attr("data-id", books[i].id)
         $li.append($button)
         $("#book-info").append($li)
