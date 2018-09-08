@@ -106,7 +106,7 @@ $( document ).ready(function() {
             var $button = $("<button>").attr("type","submit").text("Update").addClass("update-progress")
             
             var $progress = $("<div>")
-            .addClass("progress-bar-animated bg-info progress-bar progress-bar-striped")
+            .addClass("progress-bar-animated bg-danger progress-bar progress-bar-striped")
             .attr("aria-valuemin", 0)
             .attr("aria-valuemax", 100)
             .attr("id", "progressBar")
