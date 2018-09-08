@@ -118,14 +118,11 @@ module.exports = function(app) {
     console.log(currentUser);
 
     db.Book.findAll({
-      // 
+      //
       include: [{
         model: db.User, 
         where: {id: currentUser}
       }]
-
-
-
     }).then(function(dbBooks) {
       res.json(dbBooks);
     }).catch(function(err){
@@ -133,6 +130,59 @@ module.exports = function(app) {
       res.json(err);
     })
   });
+
+/*
+//change '1' parameter to :bookId
+  app.get("/api/books/current", function(req,res){
+    let book = 1; 
+    db.Book.findById({id:1})
+      .on('success', function(book) {
+        if (book) {
+          db.Book.updateAttributes({
+            current_book: true
+          })
+          .success(function() {})
+        }
+      })
+
+    db.Book.update(
+      { current_book: true },
+      { where: bookId = bookId }
+    ).then(function(rowsUpdated){
+      res.json(rowsUpdated);
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+  });
+  */
+
+  app.get("/api/books/regimen", function(req, res) {
+    let myBook = 3;
+    // req.body.regimenBook
+    let regimen = db.Regimen.create({
+      page_count: 123,
+      current_page: 12, 
+      start_date: 08/26/2018,
+      end_date: 10/26/2018,
+      userId: 1,
+      bookId: myBook
+    });
+    
+    return Promise.all([
+      myBook, 
+      regimen
+    ])
+    .then(function([book, regimen]) {
+      console.log(book);
+      console.log(regimen);
+      res.send({book, regimen});
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+  });
+
 
 
   app.delete("/api/books/:id", function(req, res) {
