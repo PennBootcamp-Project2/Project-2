@@ -6,7 +6,7 @@ var book;
 $( document ).ready(function() {
     
     //Handles retrieval from database and population of submission form.    
-    function retrieveBook() {
+    var retrieveBook = function() {
         $.get("/api/books", function(data) { //replace with proper API route
             console.log("Books", data);
             for (var i = 0; i < data.length; i++) {
@@ -21,14 +21,9 @@ $( document ).ready(function() {
             }
         })}
         retrieveBook()
-        //     });
-        //   }
         
-        //Saves the book the user selects.
-        // $(".dropdown").on("show.bs.dropdown", function(event){
-        //     submitTitle = $(event.relatedTarget).text(); // Get the text of the element
-        //     submitPageCount = $(event.relatedTarget).attr("data-id");
-        // });
+        
+        
         
         //Minor function that calculates a variable for #regimenInput
         var requiredReading = function(endDate, pageCount) {
@@ -50,8 +45,8 @@ $( document ).ready(function() {
             var pageCount = book.page_count;
             var currentPage = book.current_page;
             var startDate = book.start_date;
-
-
+            
+            
             var pagesPerDay = requiredReading(endDate, pageCount, startDate)
             var currentDate = moment();
             var numberOfDays = Math.ceil(endDate.diff(startDate, 'days', true))
@@ -92,7 +87,7 @@ $( document ).ready(function() {
             var currentPage = 0;
             // var pagesPerDay = requiredReading(endDate, pageCount)
             var startDate = moment();
-
+            
             let book = {
                 title = bookTitle,
                 page_count = pageCount,
@@ -104,77 +99,8 @@ $( document ).ready(function() {
             //Put UPDATE/POST link here. Update start date, end date and current page where the title matches
             
             regimenDisplayGenerator(bookSubmission)
-            // var pagesPerDay = requiredReading(endDate, pageCount, startDate)
-            // var currentDate = moment();
-            // var numberOfDays = endDate.diff(startDate, 'days', true)
-            // var X = currentDate.diff(startDate, 'days', true) + 1
-            // var pagePercentage = Math.ceil(currentPage * 100 / pageCount)
-            
-            // var $h3 = $("<h3>").text(bookTitle)
-            
-            // var $p = $("<p>").text("Today is Day " + X + " of " + numberOfDays + ".\n Your target for today is Page " + X*pagesPerDay + ".")
-            
-            // var $label = $("<label>").text("Current Page:")
-            // var $input = $("<input>").attr("id", "currentPage" + bookTitle).attr("type","text").attr("placeholder", 1)
-            // var $button = $("<button>").attr("type","submit").text("Update").addClass("update-progress")
-            
-            // var $progress = $("<div>")
-            // .addClass("progress-bar-animated bg-info progress-bar progress-bar-striped")
-            // .attr("aria-valuemin", 0)
-            // .attr("aria-valuemax", 100)
-            // .attr("id", "progressBar")
-            // .attr("style", "width: " + pagePercentage + "%")
-            // .attr("aria-valuenow", pagePercentage)
-            // .text(bookTitle + ": " + pagePercentage + "%")
-            // .attr("role","progressbar");
-            // var $div = $("<div>").text("Current progress:").addClass("progress").attr("style", "height: 20px").append($progress)
-            
-            // $("#regimenDisplay").append($h3).append($p)append($label).append($input).append($button).append($div)
         })
         
-        // var regimenDisplayGenerator = function (){
-        
-        //     $("#regimenDisplay").empty()
-        //     for (i=0;i<books.length;i++) {
-        //         if (!books[i].end_date) {}
-        //         else {
-        //             var endDate = books[i].end_date;
-        //             var currentPage = books[i].current_page;
-        //             var pageCount = books[i].page_count;
-        //             var startDate = books[i].start_date;
-        //             var bookTitle = books[i].title
-        //             var pagesPerDay = requiredReading(endDate, pageCount, startDate)
-        //             var currentDate = moment();
-        //             var numberOfDays = endDate.diff(startDate, 'days', true)
-        //             var X = currentDate.diff(startDate, 'days', true) + 1
-        //             var pagePercentage = Math.ceil(currentPage * 100 / pageCount)
-        
-        //             var $h3 = $("<h3>").text(bookTitle)
-        
-        //             var $p = $("<p>").text("Today is Day " + X + " of " + numberOfDays + ".\n Your target for today is Page " + X*pagesPerDay + ".")
-        
-        //             var $label = $("<label>").text("Current Page:")
-        //             var $input = $("<input>").attr("id", "currentPage" + bookTitle).attr("type","text").attr("placeholder", 1)
-        //             var $button = $("<button>").attr("type","submit").text("Update").addClass("update-progress")
-        
-        //             var $progress = $("<div>")
-        //             .addClass("progress-bar-animated bg-info progress-bar progress-bar-striped")
-        //             .attr("aria-valuemin", 0)
-        //             .attr("aria-valuemax", 100)
-        //             .attr("style", "width: " + pagePercentage + "%")
-        //             .attr("aria-valuenow", pagePercentage)
-        //             .text(bookTitle + ": " + pagePercentage + "%")
-        //             .attr("role","progressbar");
-        //             var $div = $("<div>").text("Current progress:").addClass("progress").attr("style", "height: 20px").append($progress)
-        
-        //             $("#regimenDisplay").append($h3).append($p)append($label).append($input).append($button).append($div)
-        //         }
-        
-        //     }
-        // }
-        
-        
-        //
         $(document).on("click", ".update-progress", function(){
             event.preventDefault();
             var title = $(this).attr("data-id")

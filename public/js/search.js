@@ -17,6 +17,7 @@ $('#bookSearch').click(function (event) {
       url: queryURL,
       type: "GET"
     }).then(function (result) {
+      $("#search-results-title").show();
       $("#book-info").empty()
       console.log(result.items[0].volumeInfo.title)
       var books = result.items
