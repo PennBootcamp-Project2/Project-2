@@ -131,34 +131,26 @@ module.exports = function(app) {
     })
   });
 
-/*
-//change '1' parameter to :bookId
-  app.get("/api/books/current", function(req,res){
-    let book = 1; 
-    db.Book.findById({id:1})
-      .on('success', function(book) {
-        if (book) {
-          db.Book.updateAttributes({
-            current_book: true
-          })
-          .success(function() {})
-        }
-      })
 
+//change '1' parameter to :bookId
+  app.post("/api/books/current", function(req,res){
+    let book = req.body.book; 
+  
     db.Book.update(
-      { current_book: true },
-      { where: bookId = bookId }
-    ).then(function(rowsUpdated){
-      res.json(rowsUpdated);
+      { current_book: "true" },
+      { where: {id: book} }
+    ).then(function(book){
+      res.json(book);
     })
     .catch(function(err){
       console.log(err);
     })
+    return book;
   });
-  */
+  
 
   app.get("/api/books/regimen", function(req, res) {
-    let myBook = 3;
+    let myBook = req.body.book;
     // req.body.regimenBook
     let regimen = db.Regimen.create({
       page_count: 123,
